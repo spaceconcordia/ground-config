@@ -72,17 +72,17 @@ GMAT Antenna1.PhaseCenterLocation3 = 0;
 %---------- ForceModels
 %----------------------------------------
 
-Create ForceModel DefaultProp_ForceModel;
-GMAT DefaultProp_ForceModel.CentralBody = Earth;
-GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
-GMAT DefaultProp_ForceModel.Drag = None;
-GMAT DefaultProp_ForceModel.SRP = Off;
-GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
-GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
-GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
-GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
-GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'EGM96.cof';
-GMAT DefaultProp_ForceModel.GravityField.Earth.EarthTideModel = 'None';
+Create ForceModel LowEarthProp_ForceModel;
+GMAT LowEarthProp_ForceModel.CentralBody = Earth;
+GMAT LowEarthProp_ForceModel.PrimaryBodies = {Earth};
+GMAT LowEarthProp_ForceModel.Drag = None;
+GMAT LowEarthProp_ForceModel.SRP = Off;
+GMAT LowEarthProp_ForceModel.RelativisticCorrection = Off;
+GMAT LowEarthProp_ForceModel.ErrorControl = RSSStep;
+GMAT LowEarthProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT LowEarthProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT LowEarthProp_ForceModel.GravityField.Earth.PotentialFile = 'EGM96.cof';
+GMAT LowEarthProp_ForceModel.GravityField.Earth.EarthTideModel = 'None';
 
 %----------------------------------------
 %---------- Propagators
@@ -207,7 +207,7 @@ BeginMissionSequence;
 
 While Consat1.ElapsedDays < 5
    
-   Propagate DefaultProp(Consat1) {Consat1.GroundStationTopo.Z = 0.0, StopTolerance = 1e-005};
+   Propagate LowEarthProp(Consat1) {Consat1.GroundStationTopo.Z = 0.0, StopTolerance = 1e-005};
    
    %  Caution:  I assumed we don't start during an event!  - SPH
    If Consat1.GroundStationTopo.VZ > 0
