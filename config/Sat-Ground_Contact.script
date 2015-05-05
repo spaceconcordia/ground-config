@@ -98,7 +98,7 @@ GMAT GroundReceiver.PrimaryAntenna = GroundAntenna;
 GMAT GroundReceiver.FrequencyModel = 'constant';
 GMAT GroundReceiver.CenterFrequency = 0;
 GMAT GroundReceiver.Bandwidth = 1e+018;
-GMAT GroundReceiver.Frequency = 144.200 % MHz
+%GMAT GroundReceiver.Frequency = 144.200 % MHz % NOT ALLOWED?
 
 
 
@@ -116,7 +116,7 @@ GMAT GroundStation1.Location1 = 45.497;
 GMAT GroundStation1.Location2 = 286.422;
 GMAT GroundStation1.Location3 = 0.1000000000012733;
 GMAT GroundStation1.Id = 'VE2CUA';
-GMAT GroundStation1.MinimumElevationAngle = 0.0;
+%GMAT GroundStation1.MinimumElevationAngle = 0.0; % NOT ALLOWED?
 GMAT GroundStation1.AddHardware = {GroundTransmitter, GroundReceiver, GroundAntenna};
 
 
