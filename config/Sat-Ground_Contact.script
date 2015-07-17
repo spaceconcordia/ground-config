@@ -2,7 +2,9 @@
 %Created: 2015-05-03 18:31:56
 
 %----------------------------------------
+%----------------------------------------
 %---------- Spacecraft
+%----------------------------------------
 %----------------------------------------
 
 Create Spacecraft Consat1;
@@ -103,7 +105,9 @@ GMAT GroundReceiver.Bandwidth = 1e+018;
 
 
 %----------------------------------------
-%---------- GroundStations
+%----------------------------------------
+%---------- GroundStation
+%----------------------------------------
 %----------------------------------------
 
 Create GroundStation GroundStation1;
@@ -120,6 +124,11 @@ GMAT GroundStation1.Id = 'VE2CUA';
 GMAT GroundStation1.AddHardware = {GroundTransmitter, GroundReceiver, GroundAntenna};
 
 
+%----------------------------------------
+%----------------------------------------
+%---------- Physics
+%----------------------------------------
+%----------------------------------------
 
 %----------------------------------------
 %---------- ForceModels
@@ -207,7 +216,12 @@ GMAT DefaultOrbitView.SunLine = Off;
 GMAT DefaultOrbitView.UseInitialView = On;
 GMAT DefaultOrbitView.StarCount = 7000;
 GMAT DefaultOrbitView.EnableStars = On;
-GMAT DefaultOrbitView.EnableConstellations = On;
+GMAT DefaultOrbitView.EnableConstellations = Off;
+
+
+%----------------------------------------
+%---------- GroundTrackPlot
+%----------------------------------------
 
 Create GroundTrackPlot DefaultGroundTrackPlot;
 GMAT DefaultGroundTrackPlot.SolverIterations = Current;
@@ -223,6 +237,10 @@ GMAT DefaultGroundTrackPlot.ShowPlot = true;
 GMAT DefaultGroundTrackPlot.CentralBody = Earth;
 GMAT DefaultGroundTrackPlot.TextureMap = '../data/graphics/texture/ModifiedBlueMarble.jpg';
 
+%----------------------------------------
+%---------- Plotting
+%----------------------------------------
+
 Create XYPlot XYPlot1;
 GMAT XYPlot1.SolverIterations = Current;
 GMAT XYPlot1.UpperLeft = [ 0.5894955079474775 0.08292682926829269 ];
@@ -230,9 +248,14 @@ GMAT XYPlot1.Size = [ 0.3234277816171389 0.4524390243902439 ];
 GMAT XYPlot1.RelativeZOrder = 80;
 GMAT XYPlot1.Maximized = false;
 GMAT XYPlot1.XVariable = Consat1.A1ModJulian;
+%GMAT XYPlot1.YVariables = {Consat1.GroundStationTopo.Z};
 GMAT XYPlot1.YVariables = {Consat1.GroundStationTopo.Z};
 GMAT XYPlot1.ShowGrid = true;
 GMAT XYPlot1.ShowPlot = true;
+
+%----------------------------------------
+%---------- Report File
+%----------------------------------------
 
 Create ReportFile DefaultReportFile;
 GMAT DefaultReportFile.SolverIterations = Current;
@@ -260,12 +283,20 @@ GMAT I = 1;
 %---------- Mission Sequence
 %----------------------------------------
 
+%-- A1ModJulian
+
+Create Variable number_of_days_to_simulate;
+GMAT number_of_days_to_simulate = 20;
+
 BeginMissionSequence;
 
-While Consat1.ElapsedDays < 5
+While Consat1.ElapsedDays < number_of_days_to_simulate
    
+% Set Ground Station Elevation to 0
+% StopTolerance - 
+
    Propagate LowEarthProp(Consat1) {Consat1.GroundStationTopo.Z = 0.0, StopTolerance = 1e-005};
-   
+    
    %  Caution:  I assumed we don't start during an event!  - SPH
    If Consat1.GroundStationTopo.VZ > 0
       GMAT startTime = Consat1.UTCGregorian;
@@ -277,5 +308,3 @@ While Consat1.ElapsedDays < 5
    EndIf;
 
 EndWhile;
-
-

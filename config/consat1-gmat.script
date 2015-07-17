@@ -1,9 +1,10 @@
 %General Mission Analysis Tool(GMAT) Script
 %Created: 2014-12-14 15:18:42
 
-
+%----------------------------------------
 %----------------------------------------
 %---------- Spacecraft
+%----------------------------------------
 %----------------------------------------
 
 Create Spacecraft Consat1;
@@ -27,7 +28,6 @@ GMAT Consat1.NAIFIdReferenceFrame = -123456789;
 GMAT Consat1.OrbitColor = Red;
 GMAT Consat1.TargetColor = Teal;
 GMAT Consat1.Id = 'SatId';
-GMAT Consat1.Attitude = CoordinateSystemFixed;
 GMAT Consat1.SPADSRPScaleFactor = 1;
 GMAT Consat1.ModelFile = '../data/vehicle/models/aura.3ds';
 GMAT Consat1.ModelOffsetX = 0;
@@ -37,10 +37,17 @@ GMAT Consat1.ModelRotationX = 0;
 GMAT Consat1.ModelRotationY = 0;
 GMAT Consat1.ModelRotationZ = 0;
 GMAT Consat1.ModelScale = 3;
+GMAT Consat1.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- Spacecraft Attitude
+%----------------------------------------
+GMAT Consat1.Attitude = CoordinateSystemFixed;
 GMAT Consat1.AttitudeDisplayStateType = 'Quaternion';
 GMAT Consat1.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT Consat1.AttitudeCoordinateSystem = EarthMJ2000Eq;
-GMAT Consat1.EulerAngleSequence = '321';
+
+
 
 %----------------------------------------
 %---------- Hardware Components
