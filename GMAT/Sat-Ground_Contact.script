@@ -2,6 +2,12 @@
 %Created: 2015-05-03 18:31:56
 
 %----------------------------------------
+%---------- Globals
+%----------------------------------------
+Create Variable number_of_days_to_simulate;
+GMAT number_of_days_to_simulate = 10;
+
+%----------------------------------------
 %----------------------------------------
 %---------- Spacecraft
 %----------------------------------------
@@ -9,15 +15,15 @@
 
 Create Spacecraft Consat1;
 GMAT Consat1.DateFormat = UTCGregorian;
-GMAT Consat1.Epoch = '30 Nov 2015 11:59:28.000';
+GMAT Consat1.Epoch = '1 Aug 2015 11:59:28.000';
 GMAT Consat1.CoordinateSystem = EarthMJ2000Eq;
 GMAT Consat1.DisplayStateType = Keplerian;
-GMAT Consat1.SMA = 6797.329000000001;
-GMAT Consat1.ECC = 0.001533200000000091;
+GMAT Consat1.SMA = 6797.329000000002;
+GMAT Consat1.ECC = 0.001533200000000366;
 GMAT Consat1.INC = 51.6563;
 GMAT Consat1.RAAN = 117.7494;
-GMAT Consat1.AOP = 78.86800000000673;
-GMAT Consat1.TA = 320.2378999999932;
+GMAT Consat1.AOP = 78.86800000000496;
+GMAT Consat1.TA = 320.2378999999949;
 GMAT Consat1.DryMass = 10;
 GMAT Consat1.Cd = 2.2;
 GMAT Consat1.Cr = 1.8;
@@ -44,6 +50,32 @@ GMAT Consat1.AttitudeRateDisplayStateType = 'AngularVelocity';
 GMAT Consat1.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT Consat1.EulerAngleSequence = '321';
 
+
+%----------------------------------------
+%----------------------------------------
+%---------- GroundStation
+%----------------------------------------
+%----------------------------------------
+
+Create GroundStation GroundStation1;
+GMAT GroundStation1.OrbitColor = Thistle;
+GMAT GroundStation1.TargetColor = DarkGray;
+GMAT GroundStation1.CentralBody = Earth;
+GMAT GroundStation1.StateType = Spherical;
+GMAT GroundStation1.HorizonReference = Sphere;
+GMAT GroundStation1.Location1 = 45.497;
+GMAT GroundStation1.Location2 = 286.422;
+GMAT GroundStation1.Location3 = 0.1000000000012733;
+GMAT GroundStation1.Id = 'VE2CUA';
+%GMAT GroundStation1.MinimumElevationAngle = 0.0; % NOT ALLOWED?
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem GroundStationTopo;
+GMAT GroundStationTopo.Origin = GroundStation1;
+GMAT GroundStationTopo.Axes = Topocentric;
 
 %----------------------------------------
 %---------- Hardware Components
@@ -102,28 +134,11 @@ GMAT GroundReceiver.CenterFrequency = 0;
 GMAT GroundReceiver.Bandwidth = 1e+018;
 %GMAT GroundReceiver.Frequency = 144.200 % MHz % NOT ALLOWED?
 
-
-
 %----------------------------------------
+% Attach hardware to satellite and ground station
 %----------------------------------------
-%---------- GroundStation
-%----------------------------------------
-%----------------------------------------
-
-Create GroundStation GroundStation1;
-GMAT GroundStation1.OrbitColor = Thistle;
-GMAT GroundStation1.TargetColor = DarkGray;
-GMAT GroundStation1.CentralBody = Earth;
-GMAT GroundStation1.StateType = Spherical;
-GMAT GroundStation1.HorizonReference = Sphere;
-GMAT GroundStation1.Location1 = 45.497;
-GMAT GroundStation1.Location2 = 286.422;
-GMAT GroundStation1.Location3 = 0.1000000000012733;
-GMAT GroundStation1.Id = 'VE2CUA';
-%GMAT GroundStation1.MinimumElevationAngle = 0.0; % NOT ALLOWED?
 GMAT GroundStation1.AddHardware = {GroundTransmitter, GroundReceiver, GroundAntenna};
-
-
+GMAT Consat1.AddHardware = {SatTransmitter, SatReceiver, SatAntenna};
 
 %----------------------------------------
 %----------------------------------------
@@ -173,139 +188,140 @@ GMAT DefaultIB.Element1 = 0;
 GMAT DefaultIB.Element2 = 0;
 GMAT DefaultIB.Element3 = 0;
 GMAT DefaultIB.DecrementMass = false;
-GMAT DefaultIB.Isp = 300;
+GMAT DefaultIB.Isp = 1;
 GMAT DefaultIB.GravitationalAccel = 9.810000000000001;
 
-%----------------------------------------
-%---------- Coordinate Systems
-%----------------------------------------
-
-Create CoordinateSystem GroundStationTopo;
-GMAT GroundStationTopo.Origin = GroundStation1;
-GMAT GroundStationTopo.Axes = Topocentric;
 
 %----------------------------------------
 %---------- Subscribers
 %----------------------------------------
 
-Create OrbitView DefaultOrbitView;
-GMAT DefaultOrbitView.SolverIterations = Current;
-GMAT DefaultOrbitView.UpperLeft = [ 0 0 ];
-GMAT DefaultOrbitView.Size = [ 0.8452830188679246 0.6796875 ];
-GMAT DefaultOrbitView.RelativeZOrder = 129;
-GMAT DefaultOrbitView.Maximized = false;
-GMAT DefaultOrbitView.Add = {Consat1, Earth};
-GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
-GMAT DefaultOrbitView.DrawObject = [ true true ];
-GMAT DefaultOrbitView.DataCollectFrequency = 1;
-GMAT DefaultOrbitView.UpdatePlotFrequency = 50;
-GMAT DefaultOrbitView.NumPointsToRedraw = 0;
-GMAT DefaultOrbitView.ShowPlot = true;
-GMAT DefaultOrbitView.ShowLabels = true;
-GMAT DefaultOrbitView.ViewPointReference = Earth;
-GMAT DefaultOrbitView.ViewPointVector = [ 30000 0 0 ];
-GMAT DefaultOrbitView.ViewDirection = Earth;
-GMAT DefaultOrbitView.ViewScaleFactor = 1;
-GMAT DefaultOrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
-GMAT DefaultOrbitView.ViewUpAxis = Z;
-GMAT DefaultOrbitView.EclipticPlane = Off;
-GMAT DefaultOrbitView.XYPlane = On;
-GMAT DefaultOrbitView.WireFrame = Off;
-GMAT DefaultOrbitView.Axes = On;
-GMAT DefaultOrbitView.Grid = Off;
-GMAT DefaultOrbitView.SunLine = Off;
-GMAT DefaultOrbitView.UseInitialView = On;
-GMAT DefaultOrbitView.StarCount = 7000;
-GMAT DefaultOrbitView.EnableStars = On;
-GMAT DefaultOrbitView.EnableConstellations = Off;
+Create OrbitView OrbitView;
+GMAT OrbitView.SolverIterations = Current;
+GMAT OrbitView.UpperLeft = [ 0 0 ];
+GMAT OrbitView.Size = [ 0.8452830188679246 0.6796875 ];
+GMAT OrbitView.RelativeZOrder = 7;
+GMAT OrbitView.Maximized = false;
+GMAT OrbitView.Add = {Consat1, Earth};
+GMAT OrbitView.CoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView.DrawObject = [ true true ];
+GMAT OrbitView.DataCollectFrequency = 1;
+GMAT OrbitView.UpdatePlotFrequency = 50;
+GMAT OrbitView.NumPointsToRedraw = 0;
+GMAT OrbitView.ShowPlot = true;
+GMAT OrbitView.ShowLabels = true;
+GMAT OrbitView.ViewPointReference = Earth;
+GMAT OrbitView.ViewPointVector = [ 30000 0 0 ];
+GMAT OrbitView.ViewDirection = Earth;
+GMAT OrbitView.ViewScaleFactor = 1;
+GMAT OrbitView.ViewUpCoordinateSystem = EarthMJ2000Eq;
+GMAT OrbitView.ViewUpAxis = Z;
+GMAT OrbitView.EclipticPlane = Off;
+GMAT OrbitView.XYPlane = On;
+GMAT OrbitView.WireFrame = Off;
+GMAT OrbitView.Axes = On;
+GMAT OrbitView.Grid = Off;
+GMAT OrbitView.SunLine = Off;
+GMAT OrbitView.UseInitialView = On;
+GMAT OrbitView.StarCount = 7000;
+GMAT OrbitView.EnableStars = On;
+GMAT OrbitView.EnableConstellations = Off;
 
+%----------------------------------------
+%----------------------------------------
+%---------- Plotting
+%----------------------------------------
+%----------------------------------------
 
 %----------------------------------------
 %---------- GroundTrackPlot
 %----------------------------------------
 
-Create GroundTrackPlot DefaultGroundTrackPlot;
-GMAT DefaultGroundTrackPlot.SolverIterations = Current;
-GMAT DefaultGroundTrackPlot.UpperLeft = [ 0.01886792452830189 0.0390625 ];
-GMAT DefaultGroundTrackPlot.Size = [ 0.8452830188679246 0.6796875 ];
-GMAT DefaultGroundTrackPlot.RelativeZOrder = 133;
-GMAT DefaultGroundTrackPlot.Maximized = false;
-GMAT DefaultGroundTrackPlot.Add = {Consat1};
-GMAT DefaultGroundTrackPlot.DataCollectFrequency = 1;
-GMAT DefaultGroundTrackPlot.UpdatePlotFrequency = 50;
-GMAT DefaultGroundTrackPlot.NumPointsToRedraw = 0;
-GMAT DefaultGroundTrackPlot.ShowPlot = true;
-GMAT DefaultGroundTrackPlot.CentralBody = Earth;
-GMAT DefaultGroundTrackPlot.TextureMap = '../data/graphics/texture/ModifiedBlueMarble.jpg';
+Create GroundTrackPlot GroundTrackPlot;
+GMAT GroundTrackPlot.SolverIterations = Current;
+GMAT GroundTrackPlot.UpperLeft = [ 0.01792452830188679 0.037109375 ];
+GMAT GroundTrackPlot.Size = [ 0.8452830188679246 0.6796875 ];
+GMAT GroundTrackPlot.RelativeZOrder = 12;
+GMAT GroundTrackPlot.Maximized = false;
+GMAT GroundTrackPlot.Add = {Consat1};
+GMAT GroundTrackPlot.DataCollectFrequency = 1;
+GMAT GroundTrackPlot.UpdatePlotFrequency = 50;
+GMAT GroundTrackPlot.NumPointsToRedraw = 0;
+GMAT GroundTrackPlot.ShowPlot = true;
+GMAT GroundTrackPlot.CentralBody = Earth;
+GMAT GroundTrackPlot.TextureMap = '../data/graphics/texture/ModifiedBlueMarble.jpg';
 
 %----------------------------------------
-%---------- Plotting
+%---------- SatelliteAltitudeRelativeToGround
 %----------------------------------------
 
-Create XYPlot XYPlot1;
-GMAT XYPlot1.SolverIterations = Current;
-GMAT XYPlot1.UpperLeft = [ 0.03773584905660377 0.078125 ];
-GMAT XYPlot1.Size = [ 0.8452830188679246 0.6796875 ];
-GMAT XYPlot1.RelativeZOrder = 137;
-GMAT XYPlot1.Maximized = false;
-GMAT XYPlot1.XVariable = Consat1.A1ModJulian;
-%GMAT XYPlot1.YVariables = {Consat1.GroundStationTopo.Z};
-GMAT XYPlot1.YVariables = {Consat1.GroundStationTopo.Z};
-GMAT XYPlot1.ShowGrid = true;
-GMAT XYPlot1.ShowPlot = true;
+Create XYPlot SatelliteAltitudeRelativeToGround;
+GMAT SatelliteAltitudeRelativeToGround.SolverIterations = Current;
+GMAT SatelliteAltitudeRelativeToGround.UpperLeft = [ 0.03679245283018868 0.076171875 ];
+GMAT SatelliteAltitudeRelativeToGround.Size = [ 0.8452830188679246 0.6796875 ];
+GMAT SatelliteAltitudeRelativeToGround.RelativeZOrder = 22;
+GMAT SatelliteAltitudeRelativeToGround.Maximized = false;
+GMAT SatelliteAltitudeRelativeToGround.XVariable = Consat1.ElapsedDays;
+%GMAT SatelliteAltitudeRelativeToGround.YVariables = {Consat1.GroundStationTopo.Z};
+GMAT SatelliteAltitudeRelativeToGround.YVariables = {Consat1.GroundStationTopo.Z};
+GMAT SatelliteAltitudeRelativeToGround.ShowGrid = true;
+GMAT SatelliteAltitudeRelativeToGround.ShowPlot = true;
 
 %----------------------------------------
-%---------- Report File
+%---------- Report Files
 %----------------------------------------
 
-Create ReportFile DefaultReportFile;
-GMAT DefaultReportFile.SolverIterations = Current;
-GMAT DefaultReportFile.UpperLeft = [ -0.007547169811320755 -0.04160887656033287 ];
-GMAT DefaultReportFile.Size = [ 1.015094339622642 1.052704576976422 ];
-GMAT DefaultReportFile.RelativeZOrder = 975;
-GMAT DefaultReportFile.Maximized = false;
-GMAT DefaultReportFile.Filename = 'DefaultReportFile.txt';
-GMAT DefaultReportFile.Precision = 16;
-GMAT DefaultReportFile.WriteHeaders = true;
-GMAT DefaultReportFile.LeftJustify = On;
-GMAT DefaultReportFile.ZeroFill = Off;
-GMAT DefaultReportFile.ColumnWidth = 30;
-GMAT DefaultReportFile.WriteReport = true;
+Create ReportFile ContactTimes;
+GMAT ContactTimes.SolverIterations = Current;
+GMAT ContactTimes.UpperLeft = [ -0.007547169811320755 -0.04160887656033287 ];
+GMAT ContactTimes.Size = [ 1.015094339622642 1.052704576976422 ];
+GMAT ContactTimes.RelativeZOrder = 975;
+GMAT ContactTimes.Maximized = false;
+GMAT ContactTimes.Filename = 'ContactTimes.txt';
+GMAT ContactTimes.Precision = 16;
+GMAT ContactTimes.WriteHeaders = true;
+GMAT ContactTimes.LeftJustify = On;
+GMAT ContactTimes.ZeroFill = Off;
+GMAT ContactTimes.ColumnWidth = 30;
+GMAT ContactTimes.WriteReport = true;
 
-Create EphemerisFile EphemerisFile1;
-GMAT EphemerisFile1.UpperLeft = [ 0 0 ];
-GMAT EphemerisFile1.Size = [ 0 0 ];
-GMAT EphemerisFile1.RelativeZOrder = 0;
-GMAT EphemerisFile1.Maximized = false;
-GMAT EphemerisFile1.Spacecraft = Consat1;
-GMAT EphemerisFile1.Filename = 'EphemerisFile1.eph';
-GMAT EphemerisFile1.FileFormat = CCSDS-OEM;
-GMAT EphemerisFile1.EpochFormat = UTCGregorian;
-GMAT EphemerisFile1.InitialEpoch = InitialSpacecraftEpoch;
-GMAT EphemerisFile1.FinalEpoch = FinalSpacecraftEpoch;
-GMAT EphemerisFile1.StepSize = IntegratorSteps;
-GMAT EphemerisFile1.Interpolator = Lagrange;
-GMAT EphemerisFile1.InterpolationOrder = 7;
-GMAT EphemerisFile1.CoordinateSystem = EarthMJ2000Eq;
-GMAT EphemerisFile1.OutputFormat = PC;
-GMAT EphemerisFile1.WriteEphemeris = true;
+Create ReportFile SatelliteGroundRelativeState
+SatelliteGroundRelativeState.Filename = 'SatelliteGroundRelativeState.txt'
+SatelliteGroundRelativeState.Add = {Consat1.GroundStationTopo.X Consat1.GroundStationTopo.Y Consat1.GroundStationTopo.Z Consat1.GroundStationTopo.VX Consat1.GroundStationTopo.VY Consat1.GroundStationTopo.VZ}
+
+Create EphemerisFile SatelliteEmphemeris;
+GMAT SatelliteEmphemeris.UpperLeft = [ 0 0 ];
+GMAT SatelliteEmphemeris.Size = [ 0 0 ];
+GMAT SatelliteEmphemeris.RelativeZOrder = 0;
+GMAT SatelliteEmphemeris.Maximized = false;
+GMAT SatelliteEmphemeris.Spacecraft = Consat1;
+GMAT SatelliteEmphemeris.Filename = 'SatelliteEmphemeris.eph';
+GMAT SatelliteEmphemeris.FileFormat = CCSDS-OEM;
+GMAT SatelliteEmphemeris.EpochFormat = UTCGregorian;
+GMAT SatelliteEmphemeris.InitialEpoch = InitialSpacecraftEpoch;
+GMAT SatelliteEmphemeris.FinalEpoch = FinalSpacecraftEpoch;
+GMAT SatelliteEmphemeris.StepSize = IntegratorSteps;
+GMAT SatelliteEmphemeris.Interpolator = Lagrange;
+GMAT SatelliteEmphemeris.InterpolationOrder = 7;
+GMAT SatelliteEmphemeris.CoordinateSystem = GroundStationTopo;
+GMAT SatelliteEmphemeris.OutputFormat = PC;
+GMAT SatelliteEmphemeris.WriteEphemeris = true;
 
 %----------------------------------------
 %---------- Arrays, Variables, Strings
 %----------------------------------------
-Create Variable I startEpoch duration flag number_of_days_to_simulate;
 Create String startTime endTime;
+Create Variable I startEpoch duration flag;
 GMAT I = 1;
-GMAT number_of_days_to_simulate = 20;
-
-
 
 %----------------------------------------
 %---------- Mission Sequence
 %----------------------------------------
 
-
 BeginMissionSequence;
+
+% Don't plot SatelliteAltitudeRelativeToGround until there are positive values
+Toggle SatelliteAltitudeRelativeToGround Off
 
 While Consat1.ElapsedDays < number_of_days_to_simulate
    
@@ -315,13 +331,18 @@ While Consat1.ElapsedDays < number_of_days_to_simulate
    Propagate LowEarthProp(Consat1) {Consat1.GroundStationTopo.Z = 0.0, StopTolerance = 1e-005};
    
    %  Caution:  I assumed we don't start during an event!  - SPH
+
+   % If the Satellite is above the altitude of the ground station relative to the ground stations reference to the center of the earth, then the satellite is theoretically in view of the ground station. 
+
    If Consat1.GroundStationTopo.VZ > 0
+      Toggle SatelliteAltitudeRelativeToGround On
       GMAT startTime = Consat1.UTCGregorian;
       GMAT startEpoch = Consat1.TAIModJulian;
    Else
+      Toggle SatelliteAltitudeRelativeToGround Off
       GMAT endTime = Consat1.UTCGregorian;
       GMAT duration = (Consat1.TAIModJulian - startEpoch)*1440;
-      Report DefaultReportFile startTime endTime duration;
+      Report ContactTimes startTime endTime duration;
    EndIf;
 
 EndWhile;
