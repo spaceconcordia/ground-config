@@ -1,0 +1,111 @@
+Generating: "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/AX25/top_block.py"
+
+Executing: "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/AX25/top_block.py"
+
+linux; GNU C++ version 4.8.4; Boost_105600; UHD_003.008.002-0-unknown
+
+Using Volk machine: avx_64_mmx_orc
+Traceback (most recent call last):
+  File "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/AX25/top_block.py", line 265, in <module>
+    tb = top_block()
+  File "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/AX25/top_block.py", line 84, in __init__
+    peak_hold=False,
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/fftsink_gl.py", line 126, in __init__
+    persist_alpha=persist_alpha,
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/fft_window.py", line 277, in __init__
+    self.plotter = plotter.channel_plotter(self)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/channel_plotter.py", line 49, in __init__
+    grid_plotter_base.__init__(self, parent, MIN_PADDING)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/grid_plotter_base.py", line 50, in __init__
+    plotter_base.__init__(self, parent)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/plotter_base.py", line 94, in __init__
+    wx.glcanvas.GLCanvas.__init__(self, parent, wx.ID_ANY, attribList=attribList);	# Specifically use the CTOR which does NOT create an implicit GL context
+  File "/usr/lib64/python2.7/site-packages/wx-3.0-gtk2/wx/glcanvas.py", line 106, in __init__
+    _glcanvas.GLCanvas_swiginit(self,_glcanvas.new_GLCanvas(*args, **kwargs))
+wx._core.PyAssertionError: C++ assertion "ok" failed at /var/tmp/portage/x11-libs/wxGTK-3.0.2.0-r1/work/wxPython-src-3.0.2.0/src/unix/glx11.cpp(442) in GetGLXVersion(): GLX version not found
+
+>>> Done
+
+Showing: "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/fm-radio.grc"
+
+Generating: "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/top_block.py"
+
+Executing: "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/top_block.py"
+
+linux; GNU C++ version 4.8.4; Boost_105600; UHD_003.008.002-0-unknown
+
+Using Volk machine: avx_64_mmx_orc
+Traceback (most recent call last):
+  File "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/top_block.py", line 259, in <module>
+    tb = top_block()
+  File "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/top_block.py", line 161, in __init__
+    peak_hold=False,
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/fftsink_gl.py", line 126, in __init__
+    persist_alpha=persist_alpha,
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/fft_window.py", line 277, in __init__
+    self.plotter = plotter.channel_plotter(self)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/channel_plotter.py", line 49, in __init__
+    grid_plotter_base.__init__(self, parent, MIN_PADDING)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/grid_plotter_base.py", line 50, in __init__
+    plotter_base.__init__(self, parent)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/plotter_base.py", line 94, in __init__
+    wx.glcanvas.GLCanvas.__init__(self, parent, wx.ID_ANY, attribList=attribList);	# Specifically use the CTOR which does NOT create an implicit GL context
+  File "/usr/lib64/python2.7/site-packages/wx-3.0-gtk2/wx/glcanvas.py", line 106, in __init__
+    _glcanvas.GLCanvas_swiginit(self,_glcanvas.new_GLCanvas(*args, **kwargs))
+wx._core.PyAssertionError: C++ assertion "ok" failed at /var/tmp/portage/x11-libs/wxGTK-3.0.2.0-r1/work/wxPython-src-3.0.2.0/src/unix/glx11.cpp(442) in GetGLXVersion(): GLX version not found
+
+>>> Done
+
+howing: "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/fm-radio.grc"
+
+Generating: "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/top_block.py"
+
+Executing: "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/top_block.py"
+
+linux; GNU C++ version 4.8.4; Boost_105600; UHD_003.008.002-0-unknown
+
+Using Volk machine: avx_64_mmx_orc
+Traceback (most recent call last):
+  File "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/top_block.py", line 259, in <module>
+    tb = top_block()
+  File "/run/media/root/958a06f5-a5f5-467a-a5b1-592eb7b2a5d7/home/scorpii/CONSAT1/ground-config/GNURadio/HackRF/top_block.py", line 161, in __init__
+    peak_hold=False,
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/fftsink_gl.py", line 126, in __init__
+    persist_alpha=persist_alpha,
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/fft_window.py", line 277, in __init__
+    self.plotter = plotter.channel_plotter(self)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/channel_plotter.py", line 49, in __init__
+    grid_plotter_base.__init__(self, parent, MIN_PADDING)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/grid_plotter_base.py", line 50, in __init__
+    plotter_base.__init__(self, parent)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/plotter_base.py", line 94, in __init__
+    wx.glcanvas.GLCanvas.__init__(self, parent, wx.ID_ANY, attribList=attribList);	# Specifically use the CTOR which does NOT create an implicit GL context
+  File "/usr/lib64/python2.7/site-packages/wx-3.0-gtk2/wx/glcanvas.py", line 106, in __init__
+    _glcanvas.GLCanvas_swiginit(self,_glcanvas.new_GLCanvas(*args, **kwargs))
+wx._core.PyAssertionError: C++ assertion "ok" failed at /var/tmp/portage/x11-libs/wxGTK-3.0.2.0-r1/work/wxPython-src-3.0.2.0/src/unix/glx11.cpp(442) in GetGLXVersion(): GLX version not found
+
+>>> Done
+
+pentoo scorpii # python fm_radio_rx.py 
+linux; GNU C++ version 4.8.4; Boost_105600; UHD_003.008.002-0-unknown
+
+Using Volk machine: avx_64_mmx_orc
+Traceback (most recent call last):
+  File "fm_radio_rx.py", line 199, in <module>
+    tb = radio()
+  File "fm_radio_rx.py", line 103, in __init__
+    peak_hold=False,
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/fftsink_gl.py", line 126, in __init__
+    persist_alpha=persist_alpha,
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/fft_window.py", line 277, in __init__
+    self.plotter = plotter.channel_plotter(self)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/channel_plotter.py", line 49, in __init__
+    grid_plotter_base.__init__(self, parent, MIN_PADDING)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/grid_plotter_base.py", line 50, in __init__
+    plotter_base.__init__(self, parent)
+  File "/usr/lib64/python2.7/site-packages/gnuradio/wxgui/plotter/plotter_base.py", line 94, in __init__
+    wx.glcanvas.GLCanvas.__init__(self, parent, wx.ID_ANY, attribList=attribList);	# Specifically use the CTOR which does NOT create an implicit GL context
+  File "/usr/lib64/python2.7/site-packages/wx-3.0-gtk2/wx/glcanvas.py", line 106, in __init__
+    _glcanvas.GLCanvas_swiginit(self,_glcanvas.new_GLCanvas(*args, **kwargs))
+wx._core.PyAssertionError: C++ assertion "ok" failed at /var/tmp/portage/x11-libs/wxGTK-3.0.2.0-r1/work/wxPython-src-3.0.2.0/src/unix/glx11.cpp(442) in GetGLXVersion(): GLX version not found
+
